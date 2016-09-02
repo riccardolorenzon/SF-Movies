@@ -1,5 +1,5 @@
 # SF-Movies
-List of movies shot in SFR displayed on a dynamic map
+List of movies shot in SFO displayed on a dynamic map
 
 ## Instructions
 To compile:
