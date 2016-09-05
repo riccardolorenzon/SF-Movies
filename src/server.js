@@ -6,7 +6,7 @@ import Express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
-
+import routes from './routes';
 // initialize the server and configure support for ejs templates
 const app = new Express();
 const server = new Server(app);
@@ -39,7 +39,7 @@ app.get('*', (req, res) => {
         markup = renderToString(<RouterContext {...renderProps}/>);
       } else {
         // otherwise we can render a 404 page
-        markup = renderToString(<NotFoundPage/>);
+        //markup = renderToString(<NotFoundPage/>);
         res.status(404);
       }
 
