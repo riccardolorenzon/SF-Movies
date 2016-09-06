@@ -10,13 +10,21 @@ module.exports = {
   },
   module: {
     loaders: [{
+      exclude: /node_modules/,
       test: path.join(__dirname, 'src'),
       loader: ['babel-loader'],
       query: {
         cacheDirectory: 'babel_cache',
-        presets: ['react', 'es2015']
+        presets: ['react', 'es2015', 'stage-1']
       }
     }]
+  },
+  resolve: {
+   extensions: ['', '.js', '.jsx']
+  },
+  devServer: {
+    historyApiFallback: true,
+    contentBase: './'
   },
   plugins: [
     new webpack.DefinePlugin({
