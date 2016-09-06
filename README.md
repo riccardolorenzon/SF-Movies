@@ -10,7 +10,7 @@ To run a local http server(on http://localhost:8080) serving the SPA:
 
 `node_modules/.bin/http-server src/static`
 
-To run the isomorphic React App - DEVELOPMENT(http://localhost:3000/), run the following commands in two separate terminal windows:
+To run the isomorphic React App - DEVELOPMENT(http://localhost:3000/map/), run the following commands in two separate terminal windows:
 
 `npm run start`
 

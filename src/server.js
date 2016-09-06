@@ -21,7 +21,6 @@ app.get('*', (req, res) => {
   match(
     { routes, location: req.url },
     (err, redirectLocation, renderProps) => {
-
       // in case of error display the error message
       if (err) {
         return res.status(500).send(err.message);
@@ -45,6 +44,7 @@ app.get('*', (req, res) => {
 
       // render the index template with the embedded React markup
       return res.render('index', { markup });
+
     }
   );
 });
