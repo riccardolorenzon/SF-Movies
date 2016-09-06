@@ -10,11 +10,11 @@ To run a local http server(on http://localhost:8080) serving the SPA:
 
 `node_modules/.bin/http-server src/static`
 
-To run the isomorphic React App - DEVELOPMENT:
+To run the isomorphic React App - DEVELOPMENT(http://localhost:3000/), run the following commands in two separate terminal windows:
 
 `npm run start`
 
-`NODE_ENV=production node_modules/.bin/babel-node --presets 'react,es2015' src/server.js`
+`npm run server`
 
 To run the isomorphic React App - PRODUCTION:
 
