@@ -37,5 +37,6 @@ jspm_packages
 .node_repl_history
 
 src/.DS_Store
+.DS_Store
 
 *.gzip
