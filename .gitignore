@@ -40,3 +40,5 @@ src/.DS_Store
 .DS_Store
 
 *.gzip
+
+src/static/js/bundle.js
