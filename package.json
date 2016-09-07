@@ -4,8 +4,8 @@
   "description": "List of movies shot in SFR displayed on a dynamic map",
   "main": "index.js",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --output-public-path=/src/static/js/",
-    "server": "node_modules/.bin/babel-node --presets 'react,es2015' src/server.js",
+    "start": "node ./node_modules/webpack/bin/webpack.js --watch --progress",
+    "server": "./node_modules/nodemon/bin/nodemon.js src/server.js --exec ./node_modules/.bin/babel-node --presets react,es2015,stage-2",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
