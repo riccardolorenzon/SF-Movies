@@ -16,8 +16,12 @@ app.set('views', path.join(__dirname, 'views'));
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, 'static')));
 
+app.get('/api/movies/', (req, res) => {
+  return res.send('this is a beautiful GET API');
+});
+
 // universal routing and rendering
-app.get('*', (req, res) => {
+app.get('/map', (req, res) => {
   match(
     { routes, location: req.url },
     (err, redirectLocation, renderProps) => {
