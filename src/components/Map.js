@@ -8,6 +8,11 @@ const coords = {
 };
 
 export default class Map extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onZoomChanged = this.onZoomChanged.bind(this)
+  }
+
   onMapCreated(map) {
     map.setOptions({
       disableDefaultUI: true
