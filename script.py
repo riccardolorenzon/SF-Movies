@@ -1,4 +1,8 @@
 import json
+import psycopg2
+
+conn = psycopg2.connect('dbname=test_geometry user=test')
+cur = conn.cursor()
 
 with open('data.json') as data_file:
     data = json.load(data_file)
@@ -14,3 +18,6 @@ data = data['data']
 
 # location(plain text)
 # print(data[0][10])
+
+cur.close()
+conn.close()
