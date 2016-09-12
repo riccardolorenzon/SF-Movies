@@ -42,3 +42,7 @@ src/.DS_Store
 *.gzip
 
 src/static/js/bundle.js
+
+env
+
+data.json
