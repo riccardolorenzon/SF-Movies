@@ -27,6 +27,7 @@ export default class Map extends React.Component {
   }
   onZoomChanged() {
     console.log('onZoomChanged');
+    console.log('zoom:', this.refs.Gmaps.getMap().getZoom());
   }
   render() {
     return (
@@ -40,7 +41,7 @@ export default class Map extends React.Component {
         loadingMessage={'Be happy'}
         params={{v: '3.exp', key: 'AIzaSyDvLAjTIxnuVk8L3abln7bBmLNdXBZ60v4'}}
         onMapCreated={this.onMapCreated}
-        onZoomChanged={this.onZoomChanged}>
+        onZoomChanged={this.onZoomChanged.bind(this)}>
         <Marker
           lat={coords.lat}
           lng={coords.lng}
