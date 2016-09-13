@@ -32,7 +32,7 @@ export default class Map extends React.Component {
   }
   onZoomChanged() {
     console.log('onZoomChanged');
-    console.log('zoom:', this.refs.Gmaps.getMap().getZoom());
+    console.log('zoom:', this.gmap.getMap().getZoom());
   }
   render() {
     return (
