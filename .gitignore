@@ -46,3 +46,5 @@ src/static/js/bundle.js
 env
 
 data.json
+
+refactored_data.json

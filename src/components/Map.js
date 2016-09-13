@@ -44,7 +44,7 @@ export default class Map extends React.Component {
         lng={coords.lng}
         zoom={12}
         loadingMessage={'Be happy'}
-        params={{v: '3.exp', key: 'AIzaSyDvLAjTIxnuVk8L3abln7bBmLNdXBZ60v4'}}
+        params={{v: '3.exp', key: 'AIzaSyCaAXe1p_-gIMrXlKuBDzfkJxJ8187GGD4'}}
         onMapCreated={this.onMapCreated}
         onZoomChanged={this.onZoomChanged.bind(this)}>
         <Marker
