@@ -9,7 +9,7 @@ with open('data.json') as data_file:
 # let's remove the meta informations
 data = data['data']
 
-geolocator = GoogleV3(api_key='AIzaSyCaAXe1p_-gIMrXlKuBDzfkJxJ8187GGD4')
+geolocator = GoogleV3(api_key='AIzaSyC9ldDPiaqCN97MXEXGJlr-GFTsRJ0542I')
 refactored_data = []
 n_movies = 0
 n_locations = 0
@@ -28,6 +28,7 @@ for movie in data:
 
     n_movies += 1
 
+    print (refactored_movie)
     refactored_data += [refactored_movie]
 
 print('# movies {}'.format(n_movies))
