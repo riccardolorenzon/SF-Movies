@@ -28,4 +28,10 @@ Get the latest dump here: [SF-data] (https://data.sfgov.org/Culture-and-Recreati
 
 Run the script `python script.py`
 
-Import the documents into MongoDB: `mongoimport --db sf_movies --collection movies_locations --file refactored_data.json --jsonArray`
+Import the documents into MongoDB:
+
+`mongoimport --db sf_movies --collection movies_locations --file refactored_data.json --jsonArray`
+
+And create the Geo index:
+
+`db.movies_locations.createIndex( { "loc": "2dsphere" } )`
