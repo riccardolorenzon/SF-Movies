@@ -43,7 +43,7 @@ export default class Map extends React.Component {
         lat={coords.lat}
         lng={coords.lng}
         zoom={12}
-        loadingMessage={'Be happy'}
+        loadingMessage={'Movies will show up in a little while :)'}
         params={{v: '3.exp', key: 'AIzaSyCaAXe1p_-gIMrXlKuBDzfkJxJ8187GGD4'}}
         onMapCreated={this.onMapCreated}
         onZoomChanged={this.onZoomChanged.bind(this)}>
