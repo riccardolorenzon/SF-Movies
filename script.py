@@ -21,15 +21,12 @@ for movie in data:
     except(GeocoderTimedOut):
         print('nope for {}'.format(movie[10]))
     if location:
-        refactored_movie['latitude'], refactored_movie['longitude'] = location.latitude, location.longitude
+        refactored_movie['loc'] = [location.longitude, location.latitude]
+        refactored_movie['title'], refactored_movie['year'], refactored_movie['location'] = movie[8], movie[9], movie[10]
         n_locations += 1
-
-    refactored_movie['title'], refactored_movie['year'], refactored_movie['location'] = movie[8], movie[9], movie[10]
-
+        refactored_data += [refactored_movie]
     n_movies += 1
-
     print (refactored_movie)
-    refactored_data += [refactored_movie]
 
 print('# movies {}'.format(n_movies))
 
