@@ -1,6 +1,8 @@
 import json
 from geopy.geocoders import GoogleV3
+from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
+from geopy.geocoders import Bing
 import time
 
 with open('data.json') as data_file:
@@ -9,7 +11,10 @@ with open('data.json') as data_file:
 # let's remove the meta informations
 data = data['data']
 
-geolocator = GoogleV3(api_key='AIzaSyC9ldDPiaqCN97MXEXGJlr-GFTsRJ0542I')
+geolocator_google = GoogleV3(api_key='AIzaSyCaAXe1p_-gIMrXlKuBDzfkJxJ8187GGD4')
+geolocator_open_maps = Nominatim()
+geolocator_microsoft = Bing(api_key='Ath1_nHTp4oY34uzWDMRpQ6Yxh_He-x2SB_av7ZT0QP5Ef5Mj8tVRygUBmjkKdvg')
+
 refactored_data = []
 n_movies = 0
 n_locations = 0
@@ -17,7 +22,7 @@ n_locations = 0
 for movie in data:
     refactored_movie = {}
     try:
-        location = geolocator.geocode(movie[10], timeout = 10)
+        location = geolocator_microsoft.geocode(movie[10], timeout = 10)
     except(GeocoderTimedOut):
         print('nope for {}'.format(movie[10]))
     if location:
