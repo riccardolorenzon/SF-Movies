@@ -7,17 +7,25 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from './routes';
+import bodyParser from 'body-parser';
+
 // initialize the server and configure support for ejs templates
 const app = new Express();
 const server = new Server(app);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, 'static')));
 
-app.get('/api/movies/', (req, res) => {
-  return res.send('this is a beautiful GET API');
+app.get('/api/movies/:neLat/:neLng/:swLat/:swLng', (req, res) => {
+  return res.send(req.params.neLat);
+
+  
+
 });
 
 // universal routing and rendering

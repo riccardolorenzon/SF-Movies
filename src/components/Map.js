@@ -48,14 +48,11 @@ export default class Map extends React.Component {
     ];
 
     // send the request to the Node server
-    var request = new Request('/api/movies/', {
-    	headers: new Headers({
-    		'Content-Type': 'application/json',
-        body: JSON.stringify(rect)
-    	})
-    });
+    var request = new Request(
+      '/api/movies/' + north_east.lat() + '/' + north_east.lng() + '/' +
+            south_west.lat() + '/' + south_west.lng() + '/');
 
-    fetch('/api/movies/')
+    fetch(request)
     .then(function(response) {
       if (response.ok) {
         return response.text();
