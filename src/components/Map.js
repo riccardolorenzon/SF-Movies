@@ -33,6 +33,21 @@ export default class Map extends React.Component {
   onZoomChanged() {
     console.log('onZoomChanged');
     console.log('zoom:', this.gmap.getMap().getZoom());
+    var bounds = this.gmap.getMap().getBounds();
+    console.log('bounds:', bounds)
+
+    var center = bounds.getCenter();
+    var north_east = bounds.getNorthEast();
+    var south_west = bounds.getSouthWest();
+
+    var rect = [
+      [north_east.lat(), north_east.lng()],
+      [south_west.lat(), north_east.lng()],
+      [north_east.lat(), south_west.lng()],
+      [south_west.lat(), south_west.lng()]
+    ];
+
+    console.log(rect);
   }
   render() {
     return (
