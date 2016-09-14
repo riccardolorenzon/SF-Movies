@@ -47,6 +47,24 @@ export default class Map extends React.Component {
       [south_west.lat(), south_west.lng()]
     ];
 
+    // send the request to the Node server
+    var request = new Request('/api/movies/', {
+    	headers: new Headers({
+    		'Content-Type': 'application/json',
+        body: JSON.stringify(rect)
+    	})
+    });
+
+    fetch('/api/movies/')
+    .then(function(response) {
+      if (response.ok) {
+        return response.text();
+      }
+    })
+    .then(function(text) {
+      console.log(text);
+    })
+
     console.log(rect);
   }
   render() {
