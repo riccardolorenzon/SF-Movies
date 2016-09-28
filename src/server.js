@@ -50,16 +50,15 @@ app.get('/api/movies/:neLat/:neLng/:swLat/:swLng', (req, res) => {
   };
 
 
-  //db.restaurants.find( { location: { $geoWithin: { $geometry: neighborhood.geometry } } } )
-  var query = SFSchema.count({ loc: { $within: { $geometry: geometryJson }}});
+  var query = SFSchema.find({ loc: { $within: { $geometry: geometryJson }}});
+  query.select('loc title location');
 
-
-  query.count(function (err, count) {
+  query.exec(function (err, movies) {
     if (err) {
       return res.send('error ' + err);
     }
     else {
-      return res.send('query successful ' + count);
+      return res.json(movies);
     }
   })
 });

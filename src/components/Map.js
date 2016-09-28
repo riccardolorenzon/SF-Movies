@@ -18,24 +18,9 @@ export default class Map extends React.Component {
       disableDefaultUI: true
     });
   }
-
-  onDragEnd(e) {
-    console.log('onDragEnd', e);
-  }
-
-  onCloseClick() {
-    console.log('onCloseClick');
-  }
-
-  onClick(e) {
-    console.log('onClick', e);
-  }
+  
   onZoomChanged() {
-    console.log('onZoomChanged');
-    console.log('zoom:', this.gmap.getMap().getZoom());
     var bounds = this.gmap.getMap().getBounds();
-    console.log('bounds:', bounds)
-
     var center = bounds.getCenter();
     var north_east = bounds.getNorthEast();
     var south_west = bounds.getSouthWest();
@@ -51,7 +36,7 @@ export default class Map extends React.Component {
     var request = new Request(
       '/api/movies/' + north_east.lat() + '/' + north_east.lng() + '/' +
             south_west.lat() + '/' + south_west.lng() + '/');
-
+    var _this = this;
     fetch(request)
     .then(function(response) {
       if (response.ok) {
@@ -59,12 +44,19 @@ export default class Map extends React.Component {
       }
     })
     .then(function(text) {
-      console.log(text);
+      var data = JSON.parse(text);
+      data.forEach(function(element) {
+        var myLatLng = {lat: element.loc[1], lng: element.loc[0]};
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: _this.gmap.getMap(),
+          title: element.title + ' - ' + element.location
+        });
+      });
     })
-
-    console.log(rect);
   }
   render() {
+    console.log('rendering...');
     return (
       <Gmaps
         ref={(googleMap) => this.gmap = googleMap}
@@ -77,16 +69,6 @@ export default class Map extends React.Component {
         params={{v: '3.exp', key: 'AIzaSyCaAXe1p_-gIMrXlKuBDzfkJxJ8187GGD4'}}
         onMapCreated={this.onMapCreated}
         onZoomChanged={this.onZoomChanged.bind(this)}>
-        <Marker
-          lat={coords.lat}
-          lng={coords.lng}
-          draggable={true}
-          onDragEnd={this.onDragEnd} />
-        <Circle
-          lat={coords.lat}
-          lng={coords.lng}
-          radius={500}
-          onClick={this.onClick} />
       </Gmaps>
     );
   }
