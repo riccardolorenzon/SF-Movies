@@ -8,6 +8,18 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from './routes';
 import bodyParser from 'body-parser';
+var mongoose   = require('mongoose');
+
+mongoose.connect('mongodb://localhost/sf_movies');
+
+var SFSchema = new mongoose.Schema({
+  title: String,
+  location: String,
+  year: String,
+  loc: [Number, Number]
+}, { collection : 'movies_locations' });
+
+SFSchema = mongoose.model('SFSchema', SFSchema);
 
 // initialize the server and configure support for ejs templates
 const app = new Express();
@@ -22,10 +34,34 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(Express.static(path.join(__dirname, 'static')));
 
 app.get('/api/movies/:neLat/:neLng/:swLat/:swLng', (req, res) => {
-  return res.send(req.params.neLat);
+  var nw = []
 
-  
+  var geometryJson = {
+    type: 'Polygon',
+    coordinates: [
+      [
+        [req.params.swLng, req.params.neLat],
+        [req.params.neLng, req.params.neLat],
+        [req.params.neLng, req.params.swLat],
+        [req.params.swLng, req.params.swLat],
+        [req.params.swLng, req.params.neLat],
+      ]
+    ]
+  };
 
+
+  //db.restaurants.find( { location: { $geoWithin: { $geometry: neighborhood.geometry } } } )
+  var query = SFSchema.count({ loc: { $within: { $geometry: geometryJson }}});
+
+
+  query.count(function (err, count) {
+    if (err) {
+      return res.send('error ' + err);
+    }
+    else {
+      return res.send('query successful ' + count);
+    }
+  })
 });
 
 // universal routing and rendering
