@@ -21,8 +21,9 @@ n_locations = 0
 
 for movie in data:
     refactored_movie = {}
+    movie_description = '{} , San Francisco, California, USA'.format(movie[10])
     try:
-        location = geolocator_microsoft.geocode(movie[10], timeout = 10)
+        location = geolocator_microsoft.geocode(movie_description, timeout = 10)
     except(GeocoderTimedOut):
         print('nope for {}'.format(movie[10]))
     if location:
