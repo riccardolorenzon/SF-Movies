@@ -18,7 +18,9 @@ export default class Map extends React.Component {
       disableDefaultUI: true
     });
   }
-  
+  onBoundsChanged() {
+    console.log('bound change');
+  }
   onZoomChanged() {
     var bounds = this.gmap.getMap().getBounds();
     var center = bounds.getCenter();
@@ -56,7 +58,6 @@ export default class Map extends React.Component {
     })
   }
   render() {
-    console.log('rendering...');
     return (
       <Gmaps
         ref={(googleMap) => this.gmap = googleMap}
@@ -69,6 +70,7 @@ export default class Map extends React.Component {
         params={{v: '3.exp', key: 'AIzaSyCaAXe1p_-gIMrXlKuBDzfkJxJ8187GGD4'}}
         onMapCreated={this.onMapCreated}
         onZoomChanged={this.onZoomChanged.bind(this)}>
+        onBoundsChanged={this.onBoundsChanged}
       </Gmaps>
     );
   }
